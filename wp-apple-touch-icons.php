@@ -7,4 +7,8 @@ Author: UCF Web Communications
 License: GPL3
 License URI: https://www.gnu.org/licenses/gpl.html
 */
-?>
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
+

@@ -4,6 +4,14 @@
  **/
 if ( ! class_exists( 'WP_ATI_Admin' ) ) {
     class WP_ATI_Admin {
+        public static
+            $size_array = array(
+                array( 'width' => 120, 'height' => 120, 'crop' => false ),
+                array( 'width' => 152, 'height' => 152, 'crop' => false ),
+                array( 'width' => 167, 'height' => 167, 'crop' => false ),
+                array( 'width' => 180, 'height' => 180, 'crop' => false )
+            );
+
         private static
             $option_prefix = 'wp_ati_';
 
@@ -60,14 +68,7 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
 
             $image = wp_get_image_editor( $path );
 
-            $size_array = array(
-                array( 'width' => 120, 'height' => 120, 'crop' => false ),
-                array( 'width' => 152, 'height' => 152, 'crop' => false ),
-                array( 'width' => 167, 'height' => 167, 'crop' => false ),
-                array( 'width' => 180, 'height' => 180, 'crop' => false )
-            );
-
-            $image->multi_resize( $size_array );
+            $image->multi_resize( self::$size_array );
         }
     }
 }

@@ -20,6 +20,7 @@ if ( ! function_exists( 'wp_ati_plugins_loaded' ) ) {
     function wp_ati_plugins_loaded() {
         add_action( 'customize_register', array( 'WP_ATI_Admin', 'add_customizer_section' ), 10, 1 );
         add_action( 'customize_register', array( 'WP_ATI_Admin', 'add_customizer_controls' ), 10, 1 );
+        add_action( 'update_option_wp_ati_apple_touch_icon', array( 'WP_ATI_Admin', 'save_apple_touch_icon' ), 10, 2 );
     }
 
     add_action( 'plugins_loaded', 'wp_ati_plugins_loaded', 10, 0 );

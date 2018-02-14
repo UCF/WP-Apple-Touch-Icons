@@ -4,7 +4,7 @@
  **/
 if ( ! class_exists( 'WP_ATI_Admin' ) ) {
     class WP_ATI_Admin {
-        static
+        private static
             $option_prefix = 'wp_ati_';
 
         /**
@@ -43,6 +43,33 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
                     )
                 )
             );
+        }
+
+        /**
+         * Provides the value of the option after it's been saved
+         * @param mixed $old_value The old value
+         * @param mixed $new_value The new value
+         * @return mixed The new value modified
+         */
+        public static function save_apple_touch_icon( $old_value, $new_value ) {
+            preg_match( '/\/wp-content(.*)/', $new_value, $matches );
+
+            if ( ! $matches ) return;
+
+            $path = ABSPATH . 'wp-content' . $matches[1];
+
+            $image = wp_get_image_editor( $path );
+
+            $size_array = array(
+                array( 'width' => 120, 'height' => 120, 'crop' => false ),
+                array( 'width' => 152, 'height' => 152, 'crop' => false ),
+                array( 'width' => 167, 'height' => 167, 'crop' => false ),
+                array( 'width' => 180, 'height' => 180, 'crop' => false )
+            );
+
+            $image->multi_resize( $size_array );
+
+            $image->save();
         }
     }
 }

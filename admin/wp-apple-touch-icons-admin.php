@@ -68,8 +68,6 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
             );
 
             $image->multi_resize( $size_array );
-
-            $image->save();
         }
     }
 }

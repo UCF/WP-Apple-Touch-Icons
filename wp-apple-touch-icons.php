@@ -11,4 +11,16 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
+include_once 'admin/wp-apple-touch-icons-admin.php';
 
+if ( ! function_exists( 'wp_ati_plugins_loaded' ) ) {
+    /**
+     * Runs when the plugins are finished loading.
+     */
+    function wp_ati_plugins_loaded() {
+        add_action( 'customize_register', array( 'WP_ATI_Admin', 'add_customizer_section' ), 10, 1 );
+        add_action( 'customize_register', array( 'WP_ATI_Admin', 'add_customizer_controls' ), 10, 1 );
+    }
+
+    add_action( 'plugins_loaded', 'wp_ati_plugins_loaded', 10, 0 );
+}

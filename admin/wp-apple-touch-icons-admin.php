@@ -76,16 +76,5 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
                 )
             );
         }
-
-        /**
-         * Provides the value of the option after it's been saved
-         * @param mixed $old_value The old value
-         * @param mixed $new_value The new value
-         * @return mixed The new value modified
-         */
-        public static function save_apple_touch_icon( $old_value, $new_value ) {
-            $icon = new WP_ATI_Icons( $new_value, false );
-			$icon->generate_icons();
-        }
     }
 }

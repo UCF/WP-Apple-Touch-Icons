@@ -17,26 +17,43 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
             $option_prefix = 'wp_ati_';
 
 		/**
-		 * Adds the icon image sizes to the image size array.
+		 * Adds all image sizes. Used before images are resized.
 		 */
 		public static function add_image_sizes() {
 			foreach( self::$size_array as $size ) {
-				add_image_size( self::$option_prefix . $size['width'], $size['width'], $size['height'], $size['crop'] );
+				self::add_image_size( $size );
 			}
 		}
 
-		public static function remove_image_sizes( $sizes, $meta ) {
-			$screen = get_current_screen();
-
-			if ( ! $screen->parent_base === 'customize' ) {
-				foreach( $sizes as $key => $size ) {
-					if ( strpos( $key, 'wp_ati_' ) !== false ) {
-						unset( $sizes[$key] );
-					}
-				}
+		/**
+		 * Removes all images sizes. Used after images are resized.
+		 */
+		public static function remove_image_sizes() {
+			foreach( self::$size_array as $size ) {
+				self::remove_image_size( $size );
 			}
+		}
 
-			return $sizes;
+		/**
+		 * Adds the icon image size to the image size array
+		 * @param int $size The image size to add
+		 */
+		public static function add_image_size( $size ) {
+			add_image_size(
+				self::$option_prefix . $size['width'],
+				$size['width'],
+				$size['height'],
+				false
+			);
+		}
+
+		/**
+		 * Removes the icon image size from the image size array
+		 * @param int $size The image size to remove
+		 */
+		public static function remove_image_size( $size ) {
+			$name = self::$option_prefix . $size['width'];
+			remove_image_size( $name );
 		}
 
         /**
@@ -75,6 +92,22 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
                     )
                 )
             );
+		}
+
+		/**
+         * Provides the value of the option after it's been saved
+         * @param mixed $old_value The old value
+         * @param mixed $new_value The new value
+         * @return mixed The new value modified
+         */
+        public static function save_apple_touch_icon( $old_value, $new_value ) {
+			self::add_image_sizes();
+
+			$icon = new WP_ATI_Icons( $new_value, false );
+			$data = wp_generate_attachment_metadata( $icon->attachment_id, $icon->attachment_path );
+			wp_update_attachment_metadata( $icon->attachment_id, $data );
+
+			self::remove_image_sizes();
         }
     }
 }

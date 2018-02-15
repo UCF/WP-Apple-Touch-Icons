@@ -87,6 +87,8 @@ if ( ! class_exists( 'WP_ATI_Icons' ) ) {
 		private function get_icon_array() {
 			$retval = array();
 
+			WP_ATI_Admin::add_image_sizes();
+
 			foreach( WP_ATI_Admin::$size_array as $size ) {
 				// If the above step didn't generate a `$src`, get the closest match.
 				$src = wp_get_attachment_image_src( $this->attachment_id, array( $size['width'], $size['height'] ) );
@@ -103,16 +105,9 @@ if ( ! class_exists( 'WP_ATI_Icons' ) ) {
 				}
 			}
 
-			return $retval;
-		}
+			WP_ATI_Admin::remove_image_sizes();
 
-		/**
-		 * Generates the various icon sizes
-		 */
-		public function generate_icons() {
-			$image = wp_get_image_editor( $this->attachment_path );
-			$image->multi_resize( WP_ATI_Admin::$size_array );
-			wp_generate_attachment_metadata( $this->attachment_id, $this->attachment_path );
+			return $retval;
 		}
 	}
 }

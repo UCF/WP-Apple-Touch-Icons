@@ -16,6 +16,29 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
         private static
             $option_prefix = 'wp_ati_';
 
+		/**
+		 * Adds the icon image sizes to the image size array.
+		 */
+		public static function add_image_sizes() {
+			foreach( self::$size_array as $size ) {
+				add_image_size( self::$option_prefix . $size['width'], $size['width'], $size['height'], $size['crop'] );
+			}
+		}
+
+		public static function remove_image_sizes( $sizes, $meta ) {
+			$screen = get_current_screen();
+
+			if ( ! $screen->parent_base === 'customize' ) {
+				foreach( $sizes as $key => $size ) {
+					if ( strpos( $key, 'wp_ati_' ) !== false ) {
+						unset( $sizes[$key] );
+					}
+				}
+			}
+
+			return $sizes;
+		}
+
         /**
          * Adds the Touch Icons section to the customizer
          * @param WP_Customizer $wp_customize

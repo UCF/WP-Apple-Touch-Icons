@@ -88,32 +88,13 @@ if ( ! class_exists( 'WP_ATI_Icons' ) ) {
 			$retval = array();
 
 			foreach( WP_ATI_Admin::$size_array as $size ) {
-				// Load the image editor so we can access some utilities.
-				$image = wp_get_image_editor( $this->attachment_path );
-
-				$src = '';
-
-				// Generate the filepath of a specifically sized image.
-				$generated_src = $image->generate_filename( $size['width'] . 'x' . $size['height'] );
-
-				// If the file exists, generate the full url.
-				if ( file_exists( $generated_src ) ) {
-					preg_match( '/wp-content(.*)/', $generated_src, $matches );
-
-					if ( $matches ) {
-						$src = content_url( $matches[1] );
-					}
-				}
-
 				// If the above step didn't generate a `$src`, get the closest match.
-				if ( ! $src ) {
-					$src = wp_get_attachment_image_src( $this->attachment_id, array( $size['width'], $size['height'] ) );
-				}
+				$src = wp_get_attachment_image_src( $this->attachment_id, array( $size['width'], $size['height'] ) );
 
 				if ( $src ) {
 					$retval[$size['width']] = array(
 						'primary' => false,
-						'src'     => $src
+						'src'     => $src[0]
 					);
 
 					if ( $size['width'] === WP_ATI_Admin::$primary_size ) {

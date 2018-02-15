@@ -10,7 +10,8 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
                 array( 'width' => 152, 'height' => 152, 'crop' => false ),
                 array( 'width' => 167, 'height' => 167, 'crop' => false ),
                 array( 'width' => 180, 'height' => 180, 'crop' => false )
-            );
+			),
+			$primary_size = 180;
 
         private static
             $option_prefix = 'wp_ati_';
@@ -25,7 +26,7 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
                 array(
                     'title' => 'Apple Touch Icons'
                 )
-            );  
+            );
         }
 
         /**
@@ -60,15 +61,8 @@ if ( ! class_exists( 'WP_ATI_Admin' ) ) {
          * @return mixed The new value modified
          */
         public static function save_apple_touch_icon( $old_value, $new_value ) {
-            preg_match( '/\/wp-content(.*)/', $new_value, $matches );
-
-            if ( ! $matches ) return;
-
-            $path = ABSPATH . 'wp-content' . $matches[1];
-
-            $image = wp_get_image_editor( $path );
-
-            $image->multi_resize( self::$size_array );
+            $icon = new WP_ATI_Icons( $new_value, false );
+			$icon->generate_icons();
         }
     }
 }

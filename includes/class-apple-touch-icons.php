@@ -53,16 +53,9 @@ if ( ! class_exists( 'WP_ATI_Icons' ) ) {
 		 * @return int The attachment id
 		 */
 		private function get_attachment_id_from_url() {
-			global $wpdb;
-
-			$attachment_id = $wpdb->get_var(
-				$wpdb->prepare(
-					"SELECT ID FROM $wpdb->posts WHERE guid=%s",
-					$this->attachment_url
-				)
-			);
-
 			$retval = null;
+
+			$attachment_id = attachment_url_to_postid( $this->attachment_url );
 
 			if ( $attachment_id ) {
 				$retval = $attachment_id;

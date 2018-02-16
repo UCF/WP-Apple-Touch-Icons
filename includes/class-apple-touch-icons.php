@@ -71,10 +71,10 @@ if ( ! class_exists( 'WP_ATI_Icons' ) ) {
 		private function get_attachment_url_from_id() {
 			$retval = null;
 
-			$attachment = get_post( $this->attachment_id );
+			$attachment = wp_get_attachment_url( $this->attachment_id );
 
-			if ( ! is_wp_error( $attachment ) ) {
-				$retval = get_permalink( $attachment );
+			if ( $attachment ) {
+				$retval = $attachment;
 			}
 
 			return $retval;

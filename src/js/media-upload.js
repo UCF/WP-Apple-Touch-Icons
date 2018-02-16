@@ -7,7 +7,7 @@ const iconMediaUpload = ($) => {
   const $addLink  = $metaBox.find('.icon-upload');
   const $delLink  = $metaBox.find('.icon-remove');
   const $input    = $metaBox.find('#wp_ati_icon');
-  const $filename = $metaBox.find('#icon-filename');
+  const $image    = $metaBox.find('#icon-preview-image');
   const $preview  = $metaBox.find('.icon-preview');
 
   const upload = (e) => {
@@ -30,7 +30,7 @@ const iconMediaUpload = ($) => {
       const attachment = uploadFrame.state().get('selection').first().toJSON();
       $preview.removeClass('hidden');
       $input.val(attachment.id);
-      $filename.text(attachment.filename);
+      $image.attr('src', attachment.url);
       $addLink.addClass('hidden');
       $delLink.removeClass('hidden');
     });
@@ -45,7 +45,7 @@ const iconMediaUpload = ($) => {
     $addLink.removeClass('hidden');
     $delLink.addClass('hidden');
     $input.val('');
-    $filename.text('');
+    $image.attr('src', '');
   };
 
   $addLink.on('click', upload);

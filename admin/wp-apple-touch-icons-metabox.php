@@ -9,7 +9,7 @@ if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 				'wp_ati_page_icon_metabox',
 				'Apple Touch Icon',
 				array( 'WP_ATI_Metabox', 'metabox_output' ),
-				'page',
+				null,
 				'normal',
 				'low'
 			);

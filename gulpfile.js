@@ -27,13 +27,14 @@ gulp.task('es-lint', function() {
 
 gulp.task('js-build', function() {
   return gulp.src(config.src.js + '/script.js')
+    .pipe(sourcemap.init())
     .pipe(include({
       includePaths: [config.src.js]
     }))
-    .on('error', console.log)
-    .pipe(babel())
+    .pipe(babel().on('error', console.log))
     .pipe(uglify())
     .pipe(rename('wp-ati.min.js'))
+    .pipe(sourcemap.write('.'))
     .pipe(gulp.dest(config.dist.js));
 });
 

@@ -4,6 +4,26 @@
  */
 if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 	class WP_ATI_Metabox {
+
+		/**
+		 * Enqueues the admin assets
+		 * @param string $hook The current hook being called
+		 */
+		public static function admin_enqueue_assets( $hook ) {
+			if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
+				wp_enqueue_script(
+					'wp-ati-js',
+					WP_ATI__JS_URL . '/wp-ati.min.js',
+					array( 'jquery' ),
+					null,
+					true
+				);
+			}
+		}
+
+		/**
+		 * Adds the icon metabox
+		 */
 		public static function add_metabox() {
 			add_meta_box(
 				'wp_ati_page_icon_metabox',
@@ -15,6 +35,11 @@ if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 			);
 		}
 
+		/**
+		 * The output of the meta box
+		 * @param WP_Post $post The post.
+		 * @return string The html output
+		 */
 		public static function metabox_output( $post ) {
 			wp_nonce_field( 'wp_ati_page_icon_metabox_nonce_save', 'wp_ati_page_icon_metabox_nonce' );
 			$upload_link = esc_url( get_upload_iframe_src( 'media', $post->ID ) );
@@ -36,7 +61,7 @@ if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 								<span id="icon-filename"><?php if ( $val ) { echo basename( $val->attachment_url ); } ?></span>
 							</div>
 							<p class="hide-if-no-js">
-								<a class="css-upload meta-file-upload <?php if ( $val ) { echo 'hidden'; }?>" href="<?php echo $upload_link; ?>">
+								<a class="icon-upload meta-file-upload <?php if ( $val ) { echo 'hidden'; }?>" href="<?php echo $upload_link; ?>">
 									Add File
 								</a>
 								<a class="icon-remove meta-file-upload <?php if ( !$val ) { echo 'hidden'; }?>" href="#">
@@ -53,6 +78,9 @@ if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 
 		}
 
+		/**
+		 * Handles saving the metabox values
+		 */
 		public static function handle_save() {
 
 		}

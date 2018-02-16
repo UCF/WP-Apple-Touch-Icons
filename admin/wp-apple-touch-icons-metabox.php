@@ -79,9 +79,22 @@ if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 
 		/**
 		 * Handles saving the metabox values
+		 * @param int $post_id The post id.
+		 * @param WP_Post $post The post object.
 		 */
-		public static function handle_save() {
+		public static function handle_save( $post_id, $post ) {
+			if (
+				! isset( $_POST['wp_ati_page_icon_metabox_nonce'] )
+				|| ! wp_verify_nonce( $_POST['wp_ati_page_icon_metabox_nonce'], 'wp_ati_page_icon_metabox_nonce_save' )
+			) {
+				return;
+			}
 
+			$attachment_id = ( isset( $_POST['wp_ati_icon'] ) ) ? intval( $_POST['wp_ati_icon'] ) : null;
+
+			if ( ! add_post_meta( $post_id, 'wp_ati_icon', $attachment_id, true ) ) {
+				update_post_meta( $post_id, 'wp_ati_icon', $attachment_id );
+			}
 		}
 	}
 }

@@ -10,7 +10,13 @@ if ( ! class_exists( 'WP_ATI_Common' ) ) {
 		 * @return array The modified meta tags
 		 */
 		public static function add_apple_icons( $meta_tags ) {
-			$icon = get_option( 'wp_ati_apple_touch_icon' );
+			global $post;
+
+			$icon = get_post_meta( $post->ID, 'wp_ati_icon', true );
+
+			if ( ! $icon ) {
+				$icon = get_option( 'wp_ati_apple_touch_icon' );
+			}
 
 			if ( $icon ) {
 				/**

@@ -20,6 +20,10 @@ Provides the ability to add a site-wide Apple Touch Icon. This icon will be used
 
 ## Changelog ##
 
+# 1.0.1 #
+Bug Fixes:
+* Cleaned up notice that was being thrown when the global $post was accessed on pages where it doesn't get set.
+
 # 1.0.0 #
 
 * Initial Release

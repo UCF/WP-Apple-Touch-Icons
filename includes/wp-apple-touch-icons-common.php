@@ -12,6 +12,8 @@ if ( ! class_exists( 'WP_ATI_Common' ) ) {
 		public static function add_apple_icons( $meta_tags ) {
 			global $post;
 
+			if ( ! $post ) return $meta_tags;
+
 			$icon = get_post_meta( $post->ID, 'wp_ati_icon', true );
 
 			if ( ! $icon ) {

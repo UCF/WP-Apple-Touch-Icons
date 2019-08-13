@@ -57,7 +57,7 @@ if ( ! class_exists( 'WP_ATI_Metabox' ) ) {
 						<th><strong>Custom Apple Touch Icon</strong></th>
 						<td>
 							<div class="icon-preview meta-file-wrap <?php if ( ! $val ) { echo 'hidden'; }?>">
-								<img id="icon-preview-image" src="<?php echo $val->attachment_url; ?>">
+								<img id="icon-preview-image" src="<?php echo ( $val ) ? $val->attachment_url : ''; ?>">
 							</div>
 							<p class="hide-if-no-js">
 								<a class="icon-upload meta-file-upload <?php if ( $val ) { echo 'hidden'; }?>" href="<?php echo $upload_link; ?>">

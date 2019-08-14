@@ -2,10 +2,11 @@
 /*
 Plugin Name: WP Apple Touch Icons
 Description: Provides the ability to upload a separate apple-touch-icon image, instead of using the site's favicon. Also allows for per page uploads of apple-icon-image.
-Version: 1.0.1
+Version: 1.0.2
 Author: UCF Web Communications
 License: GPL3
 License URI: https://www.gnu.org/licenses/gpl.html
+GitHub Plugin URI: UCF/WP-Apple-Touch-Icons
 */
 if ( ! defined( 'WPINC' ) ) {
 	die;

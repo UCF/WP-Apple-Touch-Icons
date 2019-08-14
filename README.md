@@ -20,11 +20,18 @@ Provides the ability to add a site-wide Apple Touch Icon. This icon will be used
 
 ## Changelog ##
 
-# 1.0.1 #
+### 1.0.2 ###
+Enhancements:
+* Updated packages; added template and linter config files; upgraded gulpfile.
+
+Bug Fixes:
+* Fixed notice when displaying empty `img` tag in the Apple Touch Icons metabox when no image has been selected.
+
+### 1.0.1 ###
 Bug Fixes:
 * Cleaned up notice that was being thrown when the global $post was accessed on pages where it doesn't get set.
 
-# 1.0.0 #
+### 1.0.0 ###
 
 * Initial Release
 

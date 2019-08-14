@@ -1,14 +1,14 @@
 {
-    "presets": [
-        [
-            "es2015",
-            {
-                "modules": false,
-                "loose": true
-            }
-        ]
-    ],
-    "plugins": [
-        "transform-es2015-modules-strip"
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "loose": true
+      }
     ]
+  ],
+  "plugins": [
+    "transform-es2015-modules-strip"
+  ]
 }

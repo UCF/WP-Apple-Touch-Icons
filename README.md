@@ -20,6 +20,10 @@ Provides the ability to add a site-wide Apple Touch Icon. This icon will be used
 
 ## Changelog ##
 
+### 1.0.3 ###
+Documentation:
+* Updated contributing doc to reflect the switch from slack to teams.
+
 ### 1.0.2 ###
 Enhancements:
 * Updated packages; added template and linter config files; upgraded gulpfile.

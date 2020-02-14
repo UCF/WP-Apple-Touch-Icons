@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: apple, icons, apple-touch-icon
 Requires at least: 4.3.0
 Tested up to: 5.2.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -26,6 +26,10 @@ Provides the ability to add a site-wide Apple Touch Icon. This icon will be used
 
 
 == Changelog ==
+
+= 1.0.3 =
+Documentation:
+* Updated contributing doc to reflect the switch from slack to teams.
 
 = 1.0.2 =
 Enhancements:

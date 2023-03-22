@@ -2,8 +2,8 @@
 Contributors: ucfwebcom
 Tags: apple, icons, apple-touch-icon
 Requires at least: 4.3.0
-Tested up to: 5.2.1
-Stable tag: 1.0.3
+Tested up to: 6.1
+Stable tag: 1.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -26,6 +26,10 @@ Provides the ability to add a site-wide Apple Touch Icon. This icon will be used
 
 
 == Changelog ==
+
+= 1.0.4 =
+Enhancements:
+* Added composer file.
 
 = 1.0.3 =
 Documentation:
